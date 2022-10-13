@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class MenuRepositoryImpl @Inject constructor(
 ) : MenuRepository {
-    override fun getMenuList(): List<MenuItem> {
+    override suspend fun getMenuList(): List<MenuItem> {
         TODO("Not yet implemented")
     }
 

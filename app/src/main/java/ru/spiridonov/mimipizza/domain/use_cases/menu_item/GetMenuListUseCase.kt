@@ -6,6 +6,6 @@ import javax.inject.Inject
 class GetMenuListUseCase @Inject constructor(
     private val repository: MenuRepository
 ) {
-    operator fun invoke() = repository.getMenuList()
+    suspend operator fun invoke() = repository.getMenuList()
 
 }
