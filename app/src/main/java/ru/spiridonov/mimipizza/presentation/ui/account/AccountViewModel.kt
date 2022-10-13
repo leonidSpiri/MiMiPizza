@@ -1,6 +1,7 @@
 package ru.spiridonov.mimipizza.presentation.ui.account
 
 import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class AccountViewModel : ViewModel() {
+class AccountViewModel @Inject constructor(): ViewModel() {
 }
