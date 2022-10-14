@@ -4,11 +4,15 @@ import android.app.Application
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import ru.spiridonov.mimipizza.data.database.AppDatabase
-import ru.spiridonov.mimipizza.data.database.MenuListDao
+import ru.spiridonov.mimipizza.data.database.cart.CartAppDatabase
+import ru.spiridonov.mimipizza.data.database.cart.CartListDao
+import ru.spiridonov.mimipizza.data.database.menu.MenuAppDatabase
+import ru.spiridonov.mimipizza.data.database.menu.MenuListDao
 import ru.spiridonov.mimipizza.data.network.ApiFactory
 import ru.spiridonov.mimipizza.data.network.ApiService
+import ru.spiridonov.mimipizza.data.repository.CartRepositoryImpl
 import ru.spiridonov.mimipizza.data.repository.MenuRepositoryImpl
+import ru.spiridonov.mimipizza.domain.repository.CartRepository
 import ru.spiridonov.mimipizza.domain.repository.MenuRepository
 
 @Module
@@ -18,6 +22,9 @@ interface DataModule {
     @ApplicationScope
     fun bindMenuListRepository(impl: MenuRepositoryImpl): MenuRepository
 
+    @Binds
+    @ApplicationScope
+    fun bindCartListRepository(impl: CartRepositoryImpl): CartRepository
 
     companion object {
         @Provides
@@ -28,10 +35,18 @@ interface DataModule {
 
         @Provides
         @ApplicationScope
-        fun provideCurrListDao(
+        fun provideMenuListDao(
             application: Application
         ): MenuListDao {
-            return AppDatabase.getInstance(application).menuListDao()
+            return MenuAppDatabase.getInstance(application).menuListDao()
+        }
+
+        @Provides
+        @ApplicationScope
+        fun provideCartListDao(
+            application: Application
+        ): CartListDao {
+            return CartAppDatabase.getInstance(application).cartListDao()
         }
     }
 }

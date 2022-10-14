@@ -1,7 +1,6 @@
 package ru.spiridonov.mimipizza.presentation.ui.menu
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.spiridonov.mimipizza.MiMiPizzaApp
 import ru.spiridonov.mimipizza.databinding.FragmentMenuBinding
+import ru.spiridonov.mimipizza.domain.entity.CartItem
 import ru.spiridonov.mimipizza.presentation.ViewModelFactory
 import ru.spiridonov.mimipizza.presentation.adapters.MenuItemAdapter
 import ru.spiridonov.mimipizza.presentation.ui.details.DetailInfoActivity
@@ -21,6 +21,7 @@ class MenuFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentMenuBinding is null")
 
     private lateinit var menuItemAdapter: MenuItemAdapter
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: MenuViewModel
@@ -61,6 +62,16 @@ class MenuFragment : Fragment() {
     private fun setupClickListener() {
         menuItemAdapter.onMenuItemClickListener = {
             startActivity(DetailInfoActivity.newIntent(requireContext(), it))
+        }
+        menuItemAdapter.onButtonCartClickListener = {
+            viewModel.addMenuItemToCart(
+                CartItem(
+                    id = it.id,
+                    category = it.category,
+                    size = "middle",
+                    count = 1
+                )
+            )
         }
     }
 

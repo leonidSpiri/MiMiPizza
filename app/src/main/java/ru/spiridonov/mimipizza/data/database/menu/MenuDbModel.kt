@@ -1,4 +1,4 @@
-package ru.spiridonov.mimipizza.data.database
+package ru.spiridonov.mimipizza.data.database.menu
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -12,7 +12,7 @@ import ru.spiridonov.mimipizza.domain.entity.MenuItem
 class MenuItemAdapter :
     ListAdapter<MenuItem, MenuItemViewHolder>(MenuItemDiffCallback) {
     var onMenuItemClickListener: ((MenuItem) -> Unit)? = null
-
+    var onButtonCartClickListener: ((MenuItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuItemViewHolder {
         val layoutID =
@@ -37,8 +37,12 @@ class MenuItemAdapter :
         val item = getItem(position)
         with(holder.binding) {
             when (this) {
-                is EachMenuBinding ->
+                is EachMenuBinding -> {
                     menuItem = item
+                    btnAddToCart.setOnClickListener {
+                        onButtonCartClickListener?.invoke(item)
+                    }
+                }
             }
             root.setOnClickListener {
                 onMenuItemClickListener?.invoke(item)

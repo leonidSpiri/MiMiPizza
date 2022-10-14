@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.spiridonov.mimipizza.MiMiPizzaApp
 import ru.spiridonov.mimipizza.databinding.FragmentCartBinding
-import ru.spiridonov.mimipizza.databinding.FragmentMenuBinding
 import ru.spiridonov.mimipizza.presentation.ViewModelFactory
 import javax.inject.Inject
 
@@ -44,6 +43,20 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        viewModel.getCartList().observe(viewLifecycleOwner) {
+            var text = ""
+            it.forEach { cartItem ->
+                text += cartItem.toString()
+                text += "\n"
+            }
+            if (text.isEmpty())
+                text = "Корзина пуста"
+            binding.txtCart.text = text
+        }
     }
 
     override fun onDestroyView() {

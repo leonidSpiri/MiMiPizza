@@ -4,7 +4,7 @@ import androidx.lifecycle.Transformations
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.spiridonov.mimipizza.data.database.MenuListDao
+import ru.spiridonov.mimipizza.data.database.menu.MenuListDao
 import ru.spiridonov.mimipizza.data.mapper.DtoMapper
 import ru.spiridonov.mimipizza.data.mapper.MenuMapper
 import ru.spiridonov.mimipizza.data.network.ApiService
@@ -50,7 +50,7 @@ class MenuRepositoryImpl @Inject constructor(
             val menuItem = mapPizza + mapDessert + mapDrink
             if (menuItem.isNotEmpty()) {
                 menuListDao.deleteAll()
-                menuListDao.insertMenuList(menuItem.map { menuMapper.mapDtoToDbModel(it) })
+                menuListDao.insertMenuList(menuItem.map { menuMapper.mapEntityToDbModel(it) })
             }
         }
     }

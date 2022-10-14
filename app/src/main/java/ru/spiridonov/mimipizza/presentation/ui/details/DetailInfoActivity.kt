@@ -7,10 +7,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import ru.spiridonov.mimipizza.MiMiPizzaApp
 import ru.spiridonov.mimipizza.R
 import ru.spiridonov.mimipizza.databinding.ActivityDetailInfoBinding
+import ru.spiridonov.mimipizza.domain.entity.CartItem
 import ru.spiridonov.mimipizza.domain.entity.MenuItem
+import ru.spiridonov.mimipizza.presentation.ViewModelFactory
+import javax.inject.Inject
 
 class DetailInfoActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -19,6 +23,10 @@ class DetailInfoActivity : AppCompatActivity() {
     private val component by lazy {
         (application as MiMiPizzaApp).component
     }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private lateinit var viewModel: DetailInfoViewModel
     private val menuItem by lazy {
         when {
             SDK_INT >= 33 -> intent.getParcelableExtra(MENU_ITEM, MenuItem::class.java)
@@ -32,25 +40,27 @@ class DetailInfoActivity : AppCompatActivity() {
         parseStringToArrayList(menuItem.size.toString())
     }
     private var chooseSize = "middle"
-    private var choosePrice = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(this, viewModelFactory)[DetailInfoViewModel::class.java]
         binding.menuItem = menuItem
-
         setupPriceAndSizeInfo(parseStringToArrayList(menuItem.price))
         setupAddToCartButton()
     }
 
     private fun setupAddToCartButton() {
         binding.btnAddToCart.setOnClickListener {
-            Log.d(
-                "DetailInfoActivity", "add to cart: " +
-                        "category = ${menuItem.category}, id = ${menuItem.id}, " +
-                        "size = $chooseSize, price = $choosePrice"
+            viewModel.addMenuItemToCart(
+                CartItem(
+                    id = menuItem.id,
+                    category = menuItem.category,
+                    size = chooseSize,
+                    count = 1
+                )
             )
         }
     }
@@ -62,7 +72,6 @@ class DetailInfoActivity : AppCompatActivity() {
             binding.secondChip.setOnCheckedChangeListener { _, _ ->
                 binding.btnAddToCart.text = getString(R.string.add_to_cart, list[0].second)
                 binding.txtSize.text = getString(R.string.weight, sizePairArray[0].second)
-                choosePrice = list[0].second
             }
         } else
             list.forEach { pair ->
@@ -71,39 +80,36 @@ class DetailInfoActivity : AppCompatActivity() {
                         binding.firstChip.visibility = View.VISIBLE
                         binding.firstChip.setOnCheckedChangeListener { _, _ ->
                             binding.firstChip.setChipBackgroundColorResource(R.color.good)
-                            binding.secondChip.setChipBackgroundColorResource(R.color.bad)
-                            binding.thirdChip.setChipBackgroundColorResource(R.color.bad)
+                            binding.secondChip.setChipBackgroundColorResource(R.color.orange)
+                            binding.thirdChip.setChipBackgroundColorResource(R.color.orange)
                             binding.btnAddToCart.text =
                                 getString(R.string.add_to_cart, list[0].second)
                             binding.txtSize.text = getString(R.string.size, sizePairArray[0].second)
                             chooseSize = "small"
-                            choosePrice = list[0].second
                         }
                     }
                     "middle" -> {
                         binding.secondChip.visibility = View.VISIBLE
                         binding.secondChip.setOnCheckedChangeListener { _, _ ->
-                            binding.firstChip.setChipBackgroundColorResource(R.color.bad)
+                            binding.firstChip.setChipBackgroundColorResource(R.color.orange)
                             binding.secondChip.setChipBackgroundColorResource(R.color.good)
-                            binding.thirdChip.setChipBackgroundColorResource(R.color.bad)
+                            binding.thirdChip.setChipBackgroundColorResource(R.color.orange)
                             binding.btnAddToCart.text =
                                 getString(R.string.add_to_cart, list[1].second)
                             binding.txtSize.text = getString(R.string.size, sizePairArray[1].second)
                             chooseSize = "middle"
-                            choosePrice = list[1].second
                         }
                     }
                     "big" -> {
                         binding.thirdChip.visibility = View.VISIBLE
                         binding.thirdChip.setOnCheckedChangeListener { _, _ ->
-                            binding.firstChip.setChipBackgroundColorResource(R.color.bad)
-                            binding.secondChip.setChipBackgroundColorResource(R.color.bad)
+                            binding.firstChip.setChipBackgroundColorResource(R.color.orange)
+                            binding.secondChip.setChipBackgroundColorResource(R.color.orange)
                             binding.thirdChip.setChipBackgroundColorResource(R.color.good)
                             binding.btnAddToCart.text =
                                 getString(R.string.add_to_cart, list[2].second)
                             binding.txtSize.text = getString(R.string.size, sizePairArray[2].second)
                             chooseSize = "big"
-                            choosePrice = list[2].second
                         }
                     }
                 }

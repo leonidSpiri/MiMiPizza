@@ -1,7 +1,7 @@
 package ru.spiridonov.mimipizza.data.mapper
 
 import com.google.gson.JsonObject
-import ru.spiridonov.mimipizza.data.database.MenuDbModel
+import ru.spiridonov.mimipizza.data.database.menu.MenuDbModel
 import ru.spiridonov.mimipizza.data.network.model.DessertInfoDto
 import ru.spiridonov.mimipizza.data.network.model.DrinkInfoDto
 import ru.spiridonov.mimipizza.data.network.model.PizzaInfoDto
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class MenuMapper @Inject constructor() {
 
-    fun mapDtoToDbModel(entity: MenuItem) = MenuDbModel(
+    fun mapEntityToDbModel(entity: MenuItem) = MenuDbModel(
         uniqueId = entity.uniqueId,
         id = entity.id,
         category = entity.category,
