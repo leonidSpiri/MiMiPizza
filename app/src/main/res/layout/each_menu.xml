@@ -22,39 +22,51 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/orange_light"
+            android:layout_height="180dp"
             android:orientation="horizontal"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/txt_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:text="@{menuItem.name}"
-                tools:text="Доллар США" />
-
-            <TextView
-                android:id="@+id/txt_count"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:text="@{menuItem.description}"
-                tools:text="100" />
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
 
             <ImageView
-                android:id="@+id/imgStar"
-                android:layout_width="0dp"
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:paddingStart="-10dp"
+                android:paddingEnd="-5dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                setLogo="@{menuItem.imageUrl}"
+                tools:srcCompat="@drawable/pizza" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:id="@+id/txt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@{menuItem.name}"
+                    android:textAlignment="viewEnd"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Ветчина и грибы" />
+
+                <Button
+                    android:id="@+id/btn_price"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:theme="@style/Platform.MaterialComponents"
+                    app:cornerRadius="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:strokeColor="@color/stroke"
+                    app:getMinPrice="@{menuItem.price}"
+                    tools:text="от 345 р" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
 </layout>

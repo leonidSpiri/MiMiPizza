@@ -43,6 +43,7 @@ class MenuItemAdapter :
             root.setOnClickListener {
                 onWorkItemClickListener?.invoke(item)
             }
+
         }
     }
 

@@ -48,7 +48,10 @@ class MenuRepositoryImpl @Inject constructor(
                 dtoMapper.mapDrinkJsonContainerToListDrinkInfo(drinkJsonContainer)
             val mapDrink = menuMapper.mapDrinkJsonContainerToMenuList(drinkInfoDtoList)
             val menuItem = mapPizza + mapDessert + mapDrink
-            menuListDao.insertMenuList(menuItem.map { menuMapper.mapDtoToDbModel(it) })
+            if (menuItem.isNotEmpty()) {
+                menuListDao.deleteAll()
+                menuListDao.insertMenuList(menuItem.map { menuMapper.mapDtoToDbModel(it) })
+            }
         }
     }
 }

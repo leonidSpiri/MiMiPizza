@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object ApiFactory {
-    private const val BASE_URL = "http://130.193.36.98/api/"
+    const val BASE_URL = "http://130.193.36.98/"
     private val json = GsonBuilder()
         .setLenient()
         .create()

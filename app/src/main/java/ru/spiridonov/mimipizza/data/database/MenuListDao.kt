@@ -16,4 +16,7 @@ interface MenuListDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMenuList(priceList: List<MenuDbModel>)
+
+    @Query("DELETE FROM menu_list")
+    fun deleteAll()
 }

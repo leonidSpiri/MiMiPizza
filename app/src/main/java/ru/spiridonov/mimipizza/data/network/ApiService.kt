@@ -8,15 +8,15 @@ import ru.spiridonov.mimipizza.data.network.model.PizzaJsonContainerDto
 
 interface ApiService {
 
-    @GET("pizza.json")
+    @GET("api/pizza.json")
     suspend fun getPizzaList(
     ): PizzaJsonContainerDto
 
-    @GET("dessert.json")
+    @GET("api/dessert.json")
     suspend fun getDessertList(
     ): DessertJsonContainerDto
 
-    @GET("drink.json")
+    @GET("api/drink.json")
     suspend fun getDrinkList(
     ): DrinkJsonContainerDto
 

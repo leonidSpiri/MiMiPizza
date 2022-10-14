@@ -8,7 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.spiridonov.mimipizza.MiMiPizzaApp
 import ru.spiridonov.mimipizza.R
 import ru.spiridonov.mimipizza.databinding.ActivityMainBinding
-import ru.spiridonov.mimipizza.domain.use_cases.menu_item.GetMenuListUseCase
+import ru.spiridonov.mimipizza.domain.use_cases.menu_item.LoadDataUseCase
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @Inject
-    lateinit var getMenuListUseCase: GetMenuListUseCase
+    lateinit var loadDataUseCase: LoadDataUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)
@@ -30,6 +30,6 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
-        getMenuListUseCase.invoke()
+        loadDataUseCase.invoke()
     }
 }
