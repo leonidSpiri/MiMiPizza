@@ -7,6 +7,7 @@ import ru.spiridonov.mimipizza.MiMiPizzaApp
 import ru.spiridonov.mimipizza.presentation.MainActivity
 import ru.spiridonov.mimipizza.presentation.ui.account.AccountFragment
 import ru.spiridonov.mimipizza.presentation.ui.cart.CartFragment
+import ru.spiridonov.mimipizza.presentation.ui.details.DetailInfoActivity
 import ru.spiridonov.mimipizza.presentation.ui.menu.MenuFragment
 
 @ApplicationScope
@@ -18,6 +19,7 @@ import ru.spiridonov.mimipizza.presentation.ui.menu.MenuFragment
 )
 interface ApplicationComponent {
     fun inject(activity: MainActivity)
+    fun inject(activity: DetailInfoActivity)
     fun inject(fragment: AccountFragment)
     fun inject(fragment: CartFragment)
     fun inject(fragment: MenuFragment)

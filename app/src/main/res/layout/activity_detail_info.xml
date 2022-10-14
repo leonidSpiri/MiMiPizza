@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="menuItem"
+            type="ru.spiridonov.mimipizza.domain.entity.MenuItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.ui.details.DetailInfoActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    setLogo="@{menuItem.imageUrl}"
+                    app:srcCompat="@drawable/no_photo" />
+
+                <TextView
+                    android:id="@+id/txt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{menuItem.name}"
+                    android:textSize="25sp"
+                    android:layout_marginEnd="5dp"
+                    tools:text="Пицца"/>
+
+                <TextView
+                    android:id="@+id/txt_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{menuItem.description}"
+                    android:textSize="18sp"
+                    tools:text="Очень вкусная пицца"/>
+
+                <TextView
+                    android:id="@+id/txt_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textAlignment="textEnd"
+                    tools:text="350 г"/>
+
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:singleSelection="true">
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="horizontal">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/first_chip"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:text="@string/small"
+                        android:layout_marginRight="3dp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:textAppearance="?android:attr/textAppearance"
+                        android:textColor="@color/black"
+                        android:checkable="true"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="@color/orange"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/second_chip"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/medium"
+                        android:textAlignment="center"
+                        android:layout_marginRight="3dp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:textAppearance="?android:attr/textAppearance"
+                        android:textColor="@color/black"
+                        android:checkable="true"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="@color/orange"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/third_chip"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:text="@string/big"
+                        android:textAppearance="?android:attr/textAppearance"
+                        android:textColor="@color/black"
+                        android:checkable="true"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        app:chipBackgroundColor="@color/orange"/>
+
+                     </LinearLayout>
+
+                </com.google.android.material.chip.ChipGroup>
+
+
+                <Button
+                    android:id="@+id/btn_add_to_cart"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="20sp"
+                    android:theme="@style/Platform.MaterialComponents"
+                    app:cornerRadius="5dp"
+                    app:strokeColor="@color/stroke"
+                    android:text="@string/to_cart" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

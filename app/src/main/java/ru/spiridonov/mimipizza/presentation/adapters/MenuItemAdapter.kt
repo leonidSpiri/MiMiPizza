@@ -11,7 +11,7 @@ import ru.spiridonov.mimipizza.domain.entity.MenuItem
 
 class MenuItemAdapter :
     ListAdapter<MenuItem, MenuItemViewHolder>(MenuItemDiffCallback) {
-    var onWorkItemClickListener: ((MenuItem) -> Unit)? = null
+    var onMenuItemClickListener: ((MenuItem) -> Unit)? = null
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuItemViewHolder {
@@ -41,7 +41,7 @@ class MenuItemAdapter :
                     menuItem = item
             }
             root.setOnClickListener {
-                onWorkItemClickListener?.invoke(item)
+                onMenuItemClickListener?.invoke(item)
             }
 
         }

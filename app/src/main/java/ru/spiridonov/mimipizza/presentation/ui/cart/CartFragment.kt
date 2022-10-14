@@ -9,13 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.spiridonov.mimipizza.MiMiPizzaApp
 import ru.spiridonov.mimipizza.databinding.FragmentCartBinding
+import ru.spiridonov.mimipizza.databinding.FragmentMenuBinding
 import ru.spiridonov.mimipizza.presentation.ViewModelFactory
 import javax.inject.Inject
 
 class CartFragment : Fragment() {
-
     private var _binding: FragmentCartBinding? = null
-    private val binding get() = _binding!!
+    private val binding: FragmentCartBinding
+        get() = _binding ?: throw RuntimeException("FragmentCartBinding is null")
 
     private val component by lazy {
         (requireActivity().application as MiMiPizzaApp).component

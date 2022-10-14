@@ -4,4 +4,11 @@
     <string name="title_account">Профиль</string>
     <string name="title_cart">Корзина</string>
     <string name="min_price">От %s р</string>
+    <string name="to_cart">В корзину</string>
+    <string name="small">Маленькая</string>
+    <string name="medium">Стандартная</string>
+    <string name="big">Большая</string>
+    <string name="add_to_cart">В корзину за %s Р</string>
+    <string name="weight">вес %s г</string>
+    <string name="size">размер %s см</string>
 </resources>

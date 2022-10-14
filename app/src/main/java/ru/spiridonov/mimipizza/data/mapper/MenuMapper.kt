@@ -88,7 +88,7 @@ class MenuMapper @Inject constructor() {
                     id = it.id,
                     category = it.category,
                     name = it.name,
-                    weight = it.weight,
+                    size = it.size,
                     countOfAvailable = it.countOfAvailable,
                     description = it.description,
                     price = it.price.toString(),

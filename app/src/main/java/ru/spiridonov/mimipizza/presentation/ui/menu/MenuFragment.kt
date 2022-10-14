@@ -1,6 +1,7 @@
 package ru.spiridonov.mimipizza.presentation.ui.menu
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +12,15 @@ import ru.spiridonov.mimipizza.MiMiPizzaApp
 import ru.spiridonov.mimipizza.databinding.FragmentMenuBinding
 import ru.spiridonov.mimipizza.presentation.ViewModelFactory
 import ru.spiridonov.mimipizza.presentation.adapters.MenuItemAdapter
+import ru.spiridonov.mimipizza.presentation.ui.details.DetailInfoActivity
 import javax.inject.Inject
 
 class MenuFragment : Fragment() {
-
     private var _binding: FragmentMenuBinding? = null
-    private val binding get() = _binding!!
+    private val binding: FragmentMenuBinding
+        get() = _binding ?: throw RuntimeException("FragmentMenuBinding is null")
 
+    private lateinit var menuItemAdapter: MenuItemAdapter
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: MenuViewModel
@@ -43,14 +46,21 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[MenuViewModel::class.java]
+        menuItemAdapter = MenuItemAdapter()
         observeViewModel()
+        setupClickListener()
     }
 
     private fun observeViewModel() {
         viewModel.getMenuList().observe(viewLifecycleOwner) {
-            val menuItemAdapter = MenuItemAdapter()
             binding.rvMenuList.adapter = menuItemAdapter
             menuItemAdapter.submitList(it)
+        }
+    }
+
+    private fun setupClickListener() {
+        menuItemAdapter.onMenuItemClickListener = {
+            startActivity(DetailInfoActivity.newIntent(requireContext(), it))
         }
     }
 

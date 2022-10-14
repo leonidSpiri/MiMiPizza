@@ -13,9 +13,9 @@ data class DrinkInfoDto(
     @SerializedName("name")
     @Expose
     val name: String,
-    @SerializedName("weight")
+    @SerializedName("size")
     @Expose
-    val weight: String? = null,
+    val size: String? = null,
     @SerializedName("countOfAvailable")
     @Expose
     val countOfAvailable: Int,

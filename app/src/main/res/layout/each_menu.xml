@@ -29,32 +29,35 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:paddingStart="-10dp"
                 android:paddingEnd="-5dp"
-                android:layout_height="wrap_content"
                 setLogo="@{menuItem.imageUrl}"
-                tools:srcCompat="@drawable/pizza" />
+                tools:srcCompat="@drawable/no_photo"
+                android:contentDescription="@string/app_name" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1.1"
                 android:layout_margin="5dp">
 
                 <TextView
                     android:id="@+id/txt_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginEnd="10dp"
                     android:text="@{menuItem.name}"
                     android:textAlignment="viewEnd"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Ветчина и грибы" />
 
                 <Button
-                    android:id="@+id/btn_price"
+                    android:id="@+id/btn_add_to_cart"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -1,6 +1,5 @@
 package ru.spiridonov.mimipizza.data.mapper
 
-import android.util.Log
 import com.google.gson.Gson
 import ru.spiridonov.mimipizza.data.network.model.*
 import javax.inject.Inject
@@ -15,7 +14,6 @@ class DtoMapper @Inject constructor() {
                 result.add(menuItem)
             }
         }
-        Log.d("TAG", "mapPizzaJsonContainerToListPizzaInfo: $result")
         return result
     }
 
