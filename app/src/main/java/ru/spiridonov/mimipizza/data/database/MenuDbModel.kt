@@ -1,6 +1,12 @@
-package ru.spiridonov.mimipizza.domain.entity
+package ru.spiridonov.mimipizza.data.database
 
-data class MenuItem(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "menu_list")
+data class MenuDbModel(
+    @PrimaryKey(autoGenerate = true)
+    val uniqueId: Int,
     val id: Int,
     val category: String,
     val name: String,
@@ -10,10 +16,5 @@ data class MenuItem(
     val countOfAvailable: Int,
     val description: String,
     val price: String,
-    val imageUrl: String,
-    var uniqueId: Int = UNDEFINED_ID
-) {
-    companion object {
-        const val UNDEFINED_ID = 0
-    }
-}
+    val imageUrl: String
+)

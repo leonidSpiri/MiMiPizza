@@ -1,36 +1,54 @@
 package ru.spiridonov.mimipizza.data.repository
 
+import androidx.lifecycle.Transformations
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import ru.spiridonov.mimipizza.data.database.MenuListDao
 import ru.spiridonov.mimipizza.data.mapper.DtoMapper
 import ru.spiridonov.mimipizza.data.mapper.MenuMapper
 import ru.spiridonov.mimipizza.data.network.ApiService
-import ru.spiridonov.mimipizza.domain.entity.MenuItem
 import ru.spiridonov.mimipizza.domain.repository.MenuRepository
 import javax.inject.Inject
 
 class MenuRepositoryImpl @Inject constructor(
+    private val menuListDao: MenuListDao,
     private val apiService: ApiService,
     private val dtoMapper: DtoMapper,
     private val menuMapper: MenuMapper
 ) : MenuRepository {
 
-    override suspend fun getMenuList(): List<MenuItem> {
-        val pizzaJsonContainer = apiService.getPizzaList()
-        val pizzaInfoDtoList = dtoMapper.mapPizzaJsonContainerToListPizzaInfo(pizzaJsonContainer)
-        val mapPizza = menuMapper.mapPizzaJsonContainerToMenuList(pizzaInfoDtoList)
+    override fun getMenuList() =
+        Transformations.map(menuListDao.getMenuList()) {
+            it.map { item ->
+                menuMapper.mapDbModelToEntity(item)
+            }
+        }
 
-        val dessertJsonContainer = apiService.getDessertList()
-        val dessertInfoDtoList =
-            dtoMapper.mapDessertJsonContainerToListDessertInfo(dessertJsonContainer)
-        val mapDessert = menuMapper.mapDessertJsonContainerToMenuList(dessertInfoDtoList)
 
-        val drinkJsonContainer = apiService.getDrinkList()
-        val drinkInfoDtoList = dtoMapper.mapDrinkJsonContainerToListDrinkInfo(drinkJsonContainer)
-        val mapDrink = menuMapper.mapDrinkJsonContainerToMenuList(drinkInfoDtoList)
+    override fun getMenuItemById(category: String, id: Int) =
+        Transformations.map(menuListDao.getMenuItem(category, id)) {
+            menuMapper.mapDbModelToEntity(it)
+        }
 
-        return mapPizza + mapDessert + mapDrink
-    }
+    override fun loadData() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val pizzaJsonContainer = apiService.getPizzaList()
+            val pizzaInfoDtoList =
+                dtoMapper.mapPizzaJsonContainerToListPizzaInfo(pizzaJsonContainer)
+            val mapPizza = menuMapper.mapPizzaJsonContainerToMenuList(pizzaInfoDtoList)
 
-    override fun getMenuItemById(category: String, id: Int): MenuItem {
-        TODO("Not yet implemented")
+            val dessertJsonContainer = apiService.getDessertList()
+            val dessertInfoDtoList =
+                dtoMapper.mapDessertJsonContainerToListDessertInfo(dessertJsonContainer)
+            val mapDessert = menuMapper.mapDessertJsonContainerToMenuList(dessertInfoDtoList)
+
+            val drinkJsonContainer = apiService.getDrinkList()
+            val drinkInfoDtoList =
+                dtoMapper.mapDrinkJsonContainerToListDrinkInfo(drinkJsonContainer)
+            val mapDrink = menuMapper.mapDrinkJsonContainerToMenuList(drinkInfoDtoList)
+            val menuItem = mapPizza + mapDessert + mapDrink
+            menuListDao.insertMenuList(menuItem.map { menuMapper.mapDtoToDbModel(it) })
+        }
     }
 }

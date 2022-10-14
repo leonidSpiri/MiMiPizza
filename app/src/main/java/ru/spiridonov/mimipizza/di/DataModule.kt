@@ -1,8 +1,11 @@
 package ru.spiridonov.mimipizza.di
 
+import android.app.Application
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import ru.spiridonov.mimipizza.data.database.AppDatabase
+import ru.spiridonov.mimipizza.data.database.MenuListDao
 import ru.spiridonov.mimipizza.data.network.ApiFactory
 import ru.spiridonov.mimipizza.data.network.ApiService
 import ru.spiridonov.mimipizza.data.repository.MenuRepositoryImpl
@@ -22,12 +25,13 @@ interface DataModule {
         fun provideApiService(): ApiService {
             return ApiFactory.apiService
         }
-        /*    @Provides
-           @ApplicationScope
-           fun provideCurrListDao(
-               application: Application
-           ): CurrListDao {
-               return AppDatabase.getInstance(application).currListDao()
-           }*/
+
+        @Provides
+        @ApplicationScope
+        fun provideCurrListDao(
+            application: Application
+        ): MenuListDao {
+            return AppDatabase.getInstance(application).menuListDao()
+        }
     }
 }
