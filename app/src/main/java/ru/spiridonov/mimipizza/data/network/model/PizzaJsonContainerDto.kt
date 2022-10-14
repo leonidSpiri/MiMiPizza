@@ -4,7 +4,7 @@ import com.google.gson.JsonArray
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class MenuJsonContainerDto(
+data class PizzaJsonContainerDto(
     @SerializedName("menu")
     @Expose
     val json: JsonArray? = null

@@ -6,6 +6,6 @@ import javax.inject.Inject
 class GetMenuItemByIdUseCase @Inject constructor(
     private val repository: MenuRepository
 ) {
-    operator fun invoke(id: Int) = repository.getMenuItemById(id)
+    operator fun invoke(category: String, id: Int) = repository.getMenuItemById(category, id)
 
 }

@@ -6,9 +6,9 @@ data class MenuItem(
     val name: String,
     val size: String? = null,
     val pizzaTypeDough: String? = null,
-    val weight: Int? = null,
+    val weight: String? = null,
     val countOfAvailable: Int,
     val description: String,
-    val price: Int,
+    val price: String,
     val imageUrl: String
 )

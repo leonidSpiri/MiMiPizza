@@ -1,11 +1,9 @@
 package ru.spiridonov.mimipizza.data.network.model
 
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class MenuInfoDto(
+data class DrinkInfoDto(
     @SerializedName("id")
     @Expose
     val id: Int,
@@ -15,15 +13,9 @@ data class MenuInfoDto(
     @SerializedName("name")
     @Expose
     val name: String,
-    @SerializedName("size")
-    @Expose
-    val size: JsonObject? = null,
-    @SerializedName("pizzaTypeDough")
-    @Expose
-    val pizzaTypeDough: JsonArray? = null,
     @SerializedName("weight")
     @Expose
-    val weight: JsonObject? = null,
+    val weight: String? = null,
     @SerializedName("countOfAvailable")
     @Expose
     val countOfAvailable: Int,
@@ -32,7 +24,7 @@ data class MenuInfoDto(
     val description: String,
     @SerializedName("price")
     @Expose
-    val price: JsonObject? = null,
+    val price: Int? = null,
     @SerializedName("imageUrl")
     @Expose
     val imageUrl: String? = null

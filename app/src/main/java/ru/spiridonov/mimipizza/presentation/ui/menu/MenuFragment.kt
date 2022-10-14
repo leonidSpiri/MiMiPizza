@@ -52,7 +52,7 @@ class MenuFragment : Fragment() {
                 id = 0,
                 name = "Пицца Маргарита",
                 description = "Описание пиццы 0",
-                price = 235,
+                price = "235",
                 category = "Пицца",
                 imageUrl = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 countOfAvailable = 10,

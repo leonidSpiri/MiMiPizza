@@ -5,5 +5,5 @@ import ru.spiridonov.mimipizza.domain.entity.MenuItem
 
 interface MenuRepository {
     suspend fun getMenuList(): List<MenuItem>
-    fun getMenuItemById(id: Int): MenuItem
+    fun getMenuItemById(category: String, id: Int): MenuItem
 }

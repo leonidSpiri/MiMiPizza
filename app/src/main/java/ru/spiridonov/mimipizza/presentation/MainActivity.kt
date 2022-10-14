@@ -1,6 +1,7 @@
 package ru.spiridonov.mimipizza.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -33,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
         CoroutineScope(Dispatchers.Main).launch {
-            getMenuListUseCase.invoke()
+            val array = getMenuListUseCase.invoke()
+            Log.d("TAG", "onCreate: $array")
         }
     }
 }
