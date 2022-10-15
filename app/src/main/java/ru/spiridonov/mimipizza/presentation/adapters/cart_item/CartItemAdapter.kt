@@ -48,20 +48,44 @@ class CartItemAdapter :
                     cartItem = item
 
                     //very bad code, but i'm too hary to fix it. sorry
+
                     MenuAppDatabase.getInstance(root.context).menuListDao()
                         .getMenuItem(item.category, item.id).observeForever { dbModel ->
                             val menuItem = MenuMapper().mapDbModelToEntity(dbModel)
+                            val sizePairArray = parseStringToArrayList(menuItem.size.toString())
                             txtName.text = menuItem.name
 
                             val priceList = parseStringToArrayList(menuItem.price)
                             var price = 0
-                            if (priceList.size == 1)
+                            if (priceList.size == 1) {
                                 price = priceList[0].second.toInt()
-                            else
+                                txtSize.text = imageView.context.getString(
+                                    R.string.weight,
+                                    sizePairArray[0].second
+                                )
+                            } else
                                 when (item.size) {
-                                    "small" -> price = priceList[0].second.toInt()
-                                    "middle" -> price = priceList[1].second.toInt()
-                                    "big" -> price = priceList[2].second.toInt()
+                                    "small" -> {
+                                        price = priceList[0].second.toInt()
+                                        txtSize.text = imageView.context.getString(
+                                            R.string.size,
+                                            sizePairArray[0].second
+                                        )
+                                    }
+                                    "middle" -> {
+                                        price = priceList[1].second.toInt()
+                                        txtSize.text = imageView.context.getString(
+                                            R.string.size,
+                                            sizePairArray[1].second
+                                        )
+                                    }
+                                    "big" -> {
+                                        price = priceList[2].second.toInt()
+                                        txtSize.text = imageView.context.getString(
+                                            R.string.size,
+                                            sizePairArray[2].second
+                                        )
+                                    }
                                 }
 
                             btnSum.text =
