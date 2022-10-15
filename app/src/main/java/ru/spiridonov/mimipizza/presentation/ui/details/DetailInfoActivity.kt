@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +12,7 @@ import ru.spiridonov.mimipizza.R
 import ru.spiridonov.mimipizza.databinding.ActivityDetailInfoBinding
 import ru.spiridonov.mimipizza.domain.entity.CartItem
 import ru.spiridonov.mimipizza.domain.entity.MenuItem
-import ru.spiridonov.mimipizza.presentation.ViewModelFactory
+import ru.spiridonov.mimipizza.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
 class DetailInfoActivity : AppCompatActivity() {

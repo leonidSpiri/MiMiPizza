@@ -54,9 +54,15 @@ class CartRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun deleteAllCart() =
-        cartListDao.deleteAllCart()
+    override suspend fun deleteAllCart() {
+        CoroutineScope(Dispatchers.IO).launch {
+            cartListDao.deleteAllCart()
+        }
+    }
 
-    override fun deleteCartItem(category: String, id: Int) =
-        cartListDao.deleteCartItem(category, id)
+    override suspend fun deleteCartItem(id: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            cartListDao.deleteCartItem(id)
+        }
+    }
 }

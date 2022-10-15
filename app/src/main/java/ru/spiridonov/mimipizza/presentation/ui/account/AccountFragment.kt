@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.spiridonov.mimipizza.MiMiPizzaApp
 import ru.spiridonov.mimipizza.databinding.FragmentAccountBinding
-import ru.spiridonov.mimipizza.databinding.FragmentCartBinding
-import ru.spiridonov.mimipizza.presentation.ViewModelFactory
+import ru.spiridonov.mimipizza.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
 class AccountFragment : Fragment() {

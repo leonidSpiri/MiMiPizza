@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import ru.spiridonov.mimipizza.MiMiPizzaApp
 import ru.spiridonov.mimipizza.databinding.FragmentMenuBinding
 import ru.spiridonov.mimipizza.domain.entity.CartItem
-import ru.spiridonov.mimipizza.presentation.ViewModelFactory
-import ru.spiridonov.mimipizza.presentation.adapters.MenuItemAdapter
+import ru.spiridonov.mimipizza.presentation.viewmodels.ViewModelFactory
+import ru.spiridonov.mimipizza.presentation.adapters.menu_item.MenuItemAdapter
 import ru.spiridonov.mimipizza.presentation.ui.details.DetailInfoActivity
 import javax.inject.Inject
 

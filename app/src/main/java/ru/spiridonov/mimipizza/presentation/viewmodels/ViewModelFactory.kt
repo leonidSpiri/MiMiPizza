@@ -1,4 +1,4 @@
-package ru.spiridonov.mimipizza.presentation
+package ru.spiridonov.mimipizza.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

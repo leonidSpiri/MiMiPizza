@@ -1,4 +1,4 @@
-package ru.spiridonov.mimipizza.presentation.adapters
+package ru.spiridonov.mimipizza.presentation.adapters.menu_item
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

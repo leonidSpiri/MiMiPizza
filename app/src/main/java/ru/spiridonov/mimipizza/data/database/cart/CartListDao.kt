@@ -23,6 +23,6 @@ interface CartListDao {
     @Query("DELETE FROM cart_list")
     fun deleteAllCart()
 
-    @Query("DELETE FROM cart_list where category == :category AND id ==:id")
-    fun deleteCartItem(category: String, id: Int)
+    @Query("DELETE FROM cart_list where uniqueId ==:id")
+    fun deleteCartItem(id: Int)
 }

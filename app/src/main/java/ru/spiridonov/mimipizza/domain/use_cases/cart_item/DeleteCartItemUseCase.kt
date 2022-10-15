@@ -6,6 +6,6 @@ import javax.inject.Inject
 class DeleteCartItemUseCase @Inject constructor(
     private val repository: CartRepository
 ) {
-    operator fun invoke(category: String, id: Int) = repository.deleteCartItem(category, id)
+    suspend operator fun invoke(id: Int) = repository.deleteCartItem(id)
 
 }

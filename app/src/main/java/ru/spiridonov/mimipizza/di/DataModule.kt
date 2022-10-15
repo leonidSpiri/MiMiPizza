@@ -14,6 +14,7 @@ import ru.spiridonov.mimipizza.data.repository.CartRepositoryImpl
 import ru.spiridonov.mimipizza.data.repository.MenuRepositoryImpl
 import ru.spiridonov.mimipizza.domain.repository.CartRepository
 import ru.spiridonov.mimipizza.domain.repository.MenuRepository
+import ru.spiridonov.mimipizza.domain.use_cases.menu_item.GetMenuItemByIdUseCase
 
 @Module
 interface DataModule {

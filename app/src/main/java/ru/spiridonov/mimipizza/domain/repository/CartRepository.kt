@@ -11,7 +11,7 @@ interface CartRepository {
 
     suspend fun insertCartItem(cartItem: CartItem)
 
-    fun deleteAllCart()
+    suspend fun deleteAllCart()
 
-    fun deleteCartItem(category: String, id: Int)
+    suspend fun deleteCartItem(id: Int)
 }

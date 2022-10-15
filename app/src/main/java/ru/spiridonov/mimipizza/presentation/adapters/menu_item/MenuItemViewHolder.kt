@@ -1,4 +1,4 @@
-package ru.spiridonov.mimipizza.presentation.adapters
+package ru.spiridonov.mimipizza.presentation.adapters.menu_item
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

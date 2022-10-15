@@ -11,4 +11,6 @@
     <string name="add_to_cart">В корзину за %s Р</string>
     <string name="weight">вес %s г</string>
     <string name="size">размер %s см</string>
+    <string name="update">Загрузка …</string>
+    <string name="sum">%s Р</string>
 </resources>
